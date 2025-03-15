@@ -132,7 +132,7 @@ I. A herança é utilizada para compartilhar métodos e propriedades entre class
 II. Em JavaScript, a herança é implementada através da palavra-chave `extends`.
 
 
-a) As duas afirmações são verdadeiras, e a segunda justifica a primeira.
+**a) As duas afirmações são verdadeiras, e a segunda justifica a primeira.**
 
 b) As duas afirmações são verdadeiras, mas a segunda não justifica a primeira.
 
@@ -195,7 +195,7 @@ ______
 
 a) A asserção é falsa e a razão é verdadeira.
 
-b) A asserção é verdadeira e a razão é falsa.
+**b) A asserção é verdadeira e a razão é falsa.**
 
 c) A asserção é verdadeira e a razão é verdadeira, mas a razão não explica a asserção.
 
@@ -210,10 +210,15 @@ ______
 
 ```javascript
 function somaArray(numeros) {
-
-    for (i = 0; i < numeros.size; i++) {
-        soma = 2*numeros[i];
+    // Adição da var soma, para declaração da variável 
+    var soma = 0;
+    
+    // Alteração de size para length, visto que o length vai retornar cada elemento do array
+    for (var i = 0; i < numeros.length; i++) {
+        // Adiciona o dobro do valor do elemento atual à variável 'soma'
+        soma += 2 * numeros[i];
     }
+    // Retorna o valor final de 'soma'
     return soma;
 }
 console.log(somaArray([1, 2, 3, 4]));
@@ -225,3 +230,39 @@ ______
 - Uma classe `Livro` que herda de `Produto` e modifica o método `calcularDesconto()`, aplicando um desconto de 20% no preço dos livros.
 
 Explique como funciona a herança nesse contexto e como você implementaria a modificação do método na classe `Livro`.
+
+```javascript
+// Classe Produto
+class Produto {
+  constructor(nome, preco) {
+    this.nome = nome;
+    this.preco = preco;
+  }
+
+  // Método para calcular o desconto de 10%
+  calcularDesconto() {
+    return this.preco * 0.1;
+  }
+}
+
+// Classe Livro, que herda de Produto
+class Livro extends Produto {
+  constructor(nome, preco) {
+    super(nome, preco); // Chama o construtor da classe Produto
+  }
+
+  // Sobrescreve o método calcularDesconto para aplicar 20% de desconto
+  calcularDesconto() {
+    return this.preco * 0.2; // Aplica 20% de desconto no preço do livro
+  }
+}
+
+// Criando um produto e um livro
+let produto = new Produto("Celular: ", 100);
+let livro = new Livro("É assim que acaba: ", 50);
+
+// Testando os descontos
+console.log(`Desconto do produto: R$ ${produto.calcularDesconto()}`); // 10% de 100 = 10
+console.log(`Desconto do livro: R$ ${livro.calcularDesconto()}`); // 20% de 50 = 10
+```
+A herança em programação orientada a objetos permite que uma classe (a classe filha) herde os atributos e métodos de outra classe (a classe pai). Nesse sentido, A herança permite que a classe Livro reutilize o código da classe Produto e, ao mesmo tempo, modifique o comportamento do método calcularDesconto() para aplicar um desconto diferente (20% no caso dos livros). 
